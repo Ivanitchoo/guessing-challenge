@@ -3,8 +3,7 @@
 
 #Variable creation to save the random number.
 import random
-random_num = 50
-#random.randint(1,101)
+random_num = random.randint(1,101)
 
 #Welcome message.
 print("WELCOME TO GUESSING GAME!")
