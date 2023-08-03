@@ -18,33 +18,38 @@ print("LET'S PLAY!")
 guessed_values=[0]
 
 while True:
-    guess = int(input("Guess a number: ")) #The user inputs the guessed value
+    try:
 
-    if(1 > guess or guess > 100):
-        print("OUT OF BOUNDS!")
+        guess = int(input("Guess a number: ")) #The user inputs the guessed value
+
+        if(1 > guess or guess > 100):
+            print("OUT OF BOUNDS!")
+            continue
+        
+
+        if guess == random_num:
+            print(f"Congratulations! You got it right after {len(guessed_values)} chances. The Number I was Thinking of is exactly {random_num}")
+            break
+
+        guessed_values.append(guess) #The guessed values are added to the list if they're not correct.
+
+
+        # when testing the first guess, guessed_values[-2]==0, which evaluates to False
+        # and brings us down to the second section
+        
+        if guessed_values[-2]: 
+            if abs(random_num-guess) < abs(random_num-guessed_values[-2]):
+                print('WARMER!')
+            else:
+                print('COLDER!')
+
+
+        else:
+            if(abs(random_num-guess)<=10):
+                print("WARM!")
+
+            else:
+                print("COLD")
+    except:
+        print("Only valid if you write a number (No String, Alfanumerics or Special Characters)")
         continue
-    
-
-    if guess == random_num:
-        print(f"Congratulations! You got it right after {len(guessed_values)} chances. The Number I was Thinking of is exactly {random_num}")
-        break
-
-    guessed_values.append(guess) #The guessed values are added to the list if they're not correct.
-
-
-    # when testing the first guess, guessed_values[-2]==0, which evaluates to False
-    # and brings us down to the second section
-    
-    if guessed_values[-2]: 
-        if abs(random_num-guess) < abs(random_num-guessed_values[-2]):
-            print('WARMER!')
-        else:
-            print('COLDER!')
-
-
-    else:
-        if(abs(random_num-guess)<=10):
-            print("WARM!")
-
-        else:
-            print("COLD")
